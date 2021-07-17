@@ -8,6 +8,7 @@ NVIDIA := new NvAPI()
 cnt := 0, arrCur := [], arrDef := []
 DVcount := 0
 Gcount := 0
+Gcountsub := 0
 
 while (NVIDIA.EnumNvidiaDisplayHandle(cnt) != "*-7")
 {
@@ -19,7 +20,7 @@ while (NVIDIA.EnumNvidiaDisplayHandle(cnt) != "*-7")
 return
 
 ; Max digital vibrance
-+!1::
++!1:: ; Edit this line with desired keycode https://www.autohotkey.com/docs/KeyList.htm
     if (DVcount = 0)
     {
         DVcount := 1
@@ -33,7 +34,7 @@ return
 Return
 
 ; Min gamma
-+!2::
++!2:: ; Edit this line with desired keycode https://www.autohotkey.com/docs/KeyList.htm
     if (Gcount = 0)
     {
         Gcount := 1
@@ -43,6 +44,20 @@ Return
     {
         Gcount := 0
         ControlSend, msctls_trackbar323, {Right 70}, NVIDIA Control Panel
+    }
+Return
+
+; 1.70 Gamma
++!3:: ; Edit this line with desired keycode https://www.autohotkey.com/docs/KeyList.htm
+    if (Gcountsub = 0)
+    {
+        Gcountsub := 1
+        ControlSend, msctls_trackbar323, {Right 70}, NVIDIA Control Panel 
+    }
+    else
+    {
+        Gcountsub := 0
+        ControlSend, msctls_trackbar323, {Left 70}, NVIDIA Control Panel
     }
 Return
 
